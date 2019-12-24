@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Controls from './Conrols/Controls';
+import Progress from './Progress/Progress';
+import Publication from './Publication/Publication';
 
 export default class Reader extends Component {
   static propTypes = {
-    items: PropTypes.arrayOf.isRequired,
+    items: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   state = {
@@ -36,24 +39,20 @@ export default class Reader extends Component {
     const { publicationIndex } = this.state;
     const { items } = this.props;
     const publication = items[publicationIndex];
+    const prevBtnDisabled = publicationIndex === 0;
+    const nextBtnDisabled = publicationIndex === items.length - 1;
     return (
       <div>
-        <section>
-          <button onClick={this.backward} type="button">
-            Назад
-          </button>
-          <button onClick={this.forward} type="button">
-            Вперед
-          </button>
-        </section>
-
-        <p>
-          {publicationIndex + 1}/{items.length}
-        </p>
-        <article>
-          <h2>{publication.title}</h2>
-          <p>{publication.text}</p>
-        </article>
+        <Controls
+          prevBtnDisabled={prevBtnDisabled}
+          nextBtnDisabled={nextBtnDisabled}
+          items={items.length}
+          btn={publicationIndex}
+          forward={this.forward}
+          backward={this.backward}
+        />
+        <Progress number={publicationIndex} items={items.length} />
+        <Publication publication={publication} />
       </div>
     );
   }
