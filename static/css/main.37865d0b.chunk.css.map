@@ -1,1 +1,0 @@
-{"version":3,"sources":["Styles.module.css"],"names":[],"mappings":"AAAA,wBACI,aACF,CAEA,6BACE,6BACF","file":"main.37865d0b.chunk.css","sourcesContent":[".disabled{\r\n    color: rgb(230, 5, 5);\r\n  }\r\n  \r\n  .button:active{\r\n    background: rgba(0, 0, 255, 0.664);\r\n  }"]}
