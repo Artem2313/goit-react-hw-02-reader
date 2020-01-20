@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Controls from './Conrols/Controls';
-import Progress from './Progress/Progress';
 import Publication from './Publication/Publication';
 
 export default class Reader extends Component {
@@ -38,7 +37,7 @@ export default class Reader extends Component {
   render() {
     const { publicationIndex } = this.state;
     const { items } = this.props;
-    const publication = items[publicationIndex];
+    const publication = items[publicationIndex];    
     const prevBtnDisabled = publicationIndex === 0;
     const nextBtnDisabled = publicationIndex === items.length - 1;
     return (
@@ -49,10 +48,13 @@ export default class Reader extends Component {
           items={items.length}
           btn={publicationIndex}
           forward={this.forward}
-          backward={this.backward}
-        />
-        <Progress number={publicationIndex} items={items.length} />
-        <Publication publication={publication} />
+          backward={this.backward}  
+
+        />       
+        {/* <p>
+          {publicationIndex + 1}/{items.length}
+        </p> */}
+        <Publication publication={publication} number={publicationIndex} items={items.length}/>
       </div>
     );
   }
