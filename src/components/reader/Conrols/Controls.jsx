@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Styles.module.css';
 
-const Controls = ({ items, onPrevClick, onNextClick, publicationIndex }) => {
+const Controls = ({ items, publicationIndex, handleClick }) => {
   return (
     <section>
       <button
         disabled={publicationIndex === 0}
         className={styles.button}
-        onClick={onPrevClick}
+        onClick={handleClick}
+        name="prev"
         type="button"
       >
         Назад
@@ -16,7 +17,8 @@ const Controls = ({ items, onPrevClick, onNextClick, publicationIndex }) => {
       <button
         disabled={publicationIndex === items - 1}
         className={styles.button}
-        onClick={onNextClick}
+        onClick={handleClick}
+        name="next"
         type="button"
       >
         Вперед
@@ -26,8 +28,7 @@ const Controls = ({ items, onPrevClick, onNextClick, publicationIndex }) => {
 };
 
 Controls.propTypes = {
-  onPrevClick: PropTypes.func.isRequired,
-  onNextClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
   items: PropTypes.number.isRequired,
   publicationIndex: PropTypes.number.isRequired,
 };

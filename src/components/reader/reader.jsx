@@ -12,15 +12,13 @@ export default class Reader extends Component {
     publicationIndex: 0,
   };
 
-  handlePrevClick = () => {
+  handleClick = e => {
+    const targetName = e.target.name;
     this.setState(prevState => ({
-      publicationIndex: prevState.publicationIndex - 1,
-    }));
-  };
-
-  handleNextClick = () => {
-    this.setState(prevState => ({
-      publicationIndex: prevState.publicationIndex + 1,
+      publicationIndex:
+        targetName === 'next'
+          ? prevState.publicationIndex + 1
+          : prevState.publicationIndex - 1,
     }));
   };
 
@@ -33,8 +31,7 @@ export default class Reader extends Component {
         <Controls
           publicationIndex={publicationIndex}
           items={items.length}
-          onPrevClick={this.handlePrevClick}
-          onNextClick={this.handleNextClick}
+          handleClick={this.handleClick}
         />
 
         <Publication
