@@ -2,27 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Styles.module.css';
 
-const Controls = ({
-  btn,
-  items,
-  onPrevClick,
-  onNextClick,
-  prevBtnDisabled,
-  nextBtnDisabled,
-}) => {
+const Controls = ({ items, onPrevClick, onNextClick, publicationIndex }) => {
   return (
     <section>
       <button
-        disabled={prevBtnDisabled}
-        className={btn === 0 ? styles.disabled : styles.button}
+        disabled={publicationIndex === 0}
+        className={publicationIndex === 0 ? styles.disabled : styles.button}
         onClick={onPrevClick}
         type="button"
       >
         Назад
       </button>
       <button
-        disabled={nextBtnDisabled}
-        className={btn === items - 1 ? styles.disabled : styles.button}
+        disabled={publicationIndex === items - 1}
+        className={
+          publicationIndex === items - 1 ? styles.disabled : styles.button
+        }
         onClick={onNextClick}
         type="button"
       >
@@ -35,10 +30,8 @@ const Controls = ({
 Controls.propTypes = {
   onPrevClick: PropTypes.func.isRequired,
   onNextClick: PropTypes.func.isRequired,
-  btn: PropTypes.number.isRequired,
   items: PropTypes.number.isRequired,
-  prevBtnDisabled: PropTypes.bool.isRequired,
-  nextBtnDisabled: PropTypes.bool.isRequired,
+  publicationIndex: PropTypes.number.isRequired,
 };
 
 export default Controls;
