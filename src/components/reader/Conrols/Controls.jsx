@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import styles from './Styles.module.css';
 
 const Controls = ({
-  forward,
-  backward,
   btn,
   items,
+  onPrevClick,
+  onNextClick,
   prevBtnDisabled,
   nextBtnDisabled,
 }) => {
@@ -15,7 +15,7 @@ const Controls = ({
       <button
         disabled={prevBtnDisabled}
         className={btn === 0 ? styles.disabled : styles.button}
-        onClick={backward}
+        onClick={onPrevClick}
         type="button"
       >
         Назад
@@ -23,7 +23,7 @@ const Controls = ({
       <button
         disabled={nextBtnDisabled}
         className={btn === items - 1 ? styles.disabled : styles.button}
-        onClick={forward}
+        onClick={onNextClick}
         type="button"
       >
         Вперед
@@ -33,8 +33,8 @@ const Controls = ({
 };
 
 Controls.propTypes = {
-  forward: PropTypes.func.isRequired,
-  backward: PropTypes.func.isRequired,
+  onPrevClick: PropTypes.func.isRequired,
+  onNextClick: PropTypes.func.isRequired,
   btn: PropTypes.number.isRequired,
   items: PropTypes.number.isRequired,
   prevBtnDisabled: PropTypes.bool.isRequired,

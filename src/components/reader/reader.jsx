@@ -12,32 +12,22 @@ export default class Reader extends Component {
     publicationIndex: 0,
   };
 
-  forward = () => {
-    const { publicationIndex } = this.state;
-    const { items } = this.props;
-    this.setState(state => ({
-      publicationIndex:
-        publicationIndex < items.length && publicationIndex >= 0
-          ? state.publicationIndex + 1
-          : state.publicationIndex,
+  handlePrevClick = () => {
+    this.setState(prevState => ({
+      publicationIndex: prevState.publicationIndex - 1,
     }));
   };
 
-  backward = () => {
-    const { publicationIndex } = this.state;
-    const { items } = this.props;
-    this.setState(state => ({
-      publicationIndex:
-        publicationIndex <= items.length && publicationIndex > 0
-          ? state.publicationIndex - 1
-          : state.publicationIndex,
+  handleNextClick = () => {
+    this.setState(prevState => ({
+      publicationIndex: prevState.publicationIndex + 1,
     }));
   };
 
   render() {
     const { publicationIndex } = this.state;
     const { items } = this.props;
-    const publication = items[publicationIndex];    
+    const publication = items[publicationIndex];
     const prevBtnDisabled = publicationIndex === 0;
     const nextBtnDisabled = publicationIndex === items.length - 1;
     return (
@@ -47,14 +37,17 @@ export default class Reader extends Component {
           nextBtnDisabled={nextBtnDisabled}
           items={items.length}
           btn={publicationIndex}
-          forward={this.forward}
-          backward={this.backward}  
-
-        />       
+          onPrevClick={this.handlePrevClick}
+          onNextClick={this.handleNextClick}
+        />
         {/* <p>
           {publicationIndex + 1}/{items.length}
         </p> */}
-        <Publication publication={publication} number={publicationIndex} items={items.length}/>
+        <Publication
+          publication={publication}
+          number={publicationIndex}
+          items={items.length}
+        />
       </div>
     );
   }
