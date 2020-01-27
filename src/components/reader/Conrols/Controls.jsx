@@ -7,7 +7,7 @@ const Controls = ({ items, onPrevClick, onNextClick, publicationIndex }) => {
     <section>
       <button
         disabled={publicationIndex === 0}
-        className={publicationIndex === 0 ? styles.disabled : styles.button}
+        className={styles.button}
         onClick={onPrevClick}
         type="button"
       >
@@ -15,9 +15,7 @@ const Controls = ({ items, onPrevClick, onNextClick, publicationIndex }) => {
       </button>
       <button
         disabled={publicationIndex === items - 1}
-        className={
-          publicationIndex === items - 1 ? styles.disabled : styles.button
-        }
+        className={styles.button}
         onClick={onNextClick}
         type="button"
       >
